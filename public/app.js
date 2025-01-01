@@ -4,11 +4,15 @@ import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.15.0
 
 // Firebase 설정
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-};
+    apiKey: "AIzaSyAzG-BIGsqncyy1OqNw3umz3MSteWyjmBg",
+    authDomain: "lungsout-5afc5.firebaseapp.com",
+    databaseURL: "https://lungsout-5afc5-default-rtdb.firebaseio.com",
+    projectId: "lungsout-5afc5",
+    storageBucket: "lungsout-5afc5.firebasestorage.app",
+    messagingSenderId: "949382654325",
+    appId: "1:949382654325:web:98aa2e267fd645935b8b3c",
+    measurementId: "G-7L7SBBXZ9V"
+  };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
