@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출석부</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>출석부</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>출석</th>
+            </tr>
+        </thead>
+        <tbody id="attendanceTable">
+            <!-- 학생 리스트는 JavaScript로 추가 -->
+        </tbody>
+    </table>
+    <button onclick="saveAttendance()">출석 저장</button>
+
+    <script src="app.js"></script>
+</body>
+</html>
