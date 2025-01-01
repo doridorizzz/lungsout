@@ -1,28 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>반응형 출석부</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tb_crew 목록</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .table-container {
+      width: 100%;
+      overflow-x: auto; /* 스크롤 가능 */
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px; /* 작은 화면에서도 구조 유지 */
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 12px;
+        padding: 6px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>출석부</h1>
-    <div class="attendance-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>이름</th>
-                    <th>출석</th>
-                </tr>
-            </thead>
-            <tbody id="attendanceTable">
-                <!-- 학생 리스트 -->
-            </tbody>
-        </table>
-        <button id="saveAttendance">출석 저장</button>
-    </div>
-    <script type="module" src="app.js"></script>
+  <h1>tb_crew 목록</h1>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>카톡 이름</th>
+          <th>소모임 이름</th>
+          <th>가입일</th>
+          <th>생년월일</th>
+          <th>자기소개 여부</th>
+          <th>톡방 여부</th>
+          <th>회비납부 유형</th>
+          <th>참여횟수</th>
+          <th>지각횟수</th>
+        </tr>
+      </thead>
+      <tbody id="tb_crew_list">
+        <!-- 데이터가 여기 추가됩니다 -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Firebase 초기화
+    const firebaseConfig = {
+        apiKey: "AIzaSyAzG-BIGsqncyy1OqNw3umz3MSteWyjmBg",
+        authDomain: "lungsout-5afc5.firebaseapp.com",
+        databaseURL: "https://lungsout-5afc5-default-rtdb.firebaseio.com",
+        projectId: "lungsout-5afc5",
+        storageBucket: "lungsout-5afc5.firebasestorage.app",
+        messagingSenderId: "949382654325",
+        appId: "1:949382654325:web:98aa2e267fd645935b8b3c",
+        measurementId: "G-7L7SBBXZ9V"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(app);
+
+    // tb_crew 데이터 가져오기
+    const tbCrewList = document.getElementById('tb_crew_list');
+
+    db.collection("tb_crew").get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${data.kakao_name || ''}</td>
+            <td>${data.somoim_name || ''}</td>
+            <td>${data.join_date ? data.join_date.toDate().toLocaleDateString() : ''}</td>
+            <td>${data.birth_date ? data.birth_date.toDate().toLocaleDateString() : ''}</td>
+            <td>${data.intro_yn ? 'Yes' : 'No'}</td>
+            <td>${data.kakao_yn ? 'Yes' : 'No'}</td>
+            <td>${data.dues || ''}</td>
+            <td>${data.parti_cnt || 0}</td>
+            <td>${data.late_cnt || 0}</td>
+          `;
+          tbCrewList.appendChild(row);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching tb_crew data: ", error);
+      });
+  </script>
 </body>
 </html>

@@ -1,0 +1,45 @@
+{
+    "tb_crew": [
+      {
+        "kakao_name": "JohnDoe",
+        "somoim_name": "Hiking Club",
+        "join_date": "2025-01-01T00:00:00Z",
+        "birth_date": "1990-05-15T00:00:00Z",
+        "intro_yn": true,
+        "kakao_yn": true,
+        "dues": "연납",
+        "parti_cnt": 5,
+        "late_cnt": 1
+      },
+      {
+        "kakao_name": "JaneDoe",
+        "somoim_name": "Cooking Club",
+        "join_date": "2024-12-31T00:00:00Z",
+        "birth_date": "1985-07-20T00:00:00Z",
+        "intro_yn": false,
+        "kakao_yn": true,
+        "dues": "미납",
+        "parti_cnt": 3,
+        "late_cnt": 2
+      }
+    ],
+    "tb_running": [
+      {
+        "name": "Jane Smith",
+        "date": "2025-01-01T00:00:00Z",
+        "create_name": "JohnDoe",
+        "km": 10,
+        "pace": 6.5,
+        "parti_list": ["Alice", "Bob", "Charlie"]
+      },
+      {
+        "name": "Alice Johnson",
+        "date": "2024-12-30T00:00:00Z",
+        "create_name": "JaneDoe",
+        "km": 5,
+        "pace": 5.8,
+        "parti_list": ["Jane Smith", "Charlie"]
+      }
+    ]
+  }
+  
